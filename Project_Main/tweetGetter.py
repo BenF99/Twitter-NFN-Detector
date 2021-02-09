@@ -16,8 +16,9 @@ import configparser
 
 class TweetGetter:
 
-    def __init__(self, api_path="C:/Users/User/Desktop/Project_Main/apikeys.ini"):
-        config = configparser.ConfigParser().read(api_path)
+    def __init__(self):
+        config = configparser.ConfigParser()
+        config.read("apikeys.ini")
         self.token = config['twitter']['token']
         self.token_secret = config['twitter']['token_secret']
         self.consumer_key = config['twitter']['consumer_key']
