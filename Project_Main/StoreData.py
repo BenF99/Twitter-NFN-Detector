@@ -29,6 +29,8 @@ class StoreData:
         self.ref = db.reference("Twitter NFN Detector")
         self.child_node = 'real' if self.fake < self.real else 'fake'
 
+# TODO: If data exists, return probabilities
+
     def exists(self):
         node_dict = self.ref.child('real').get()
         for v in node_dict.values():
