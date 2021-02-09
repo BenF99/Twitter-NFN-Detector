@@ -15,7 +15,7 @@ from StoreData import StoreData
 from tweetGetter import TweetGetter
 import anvil.server
 # =============================================================================
-#Setup Credentials and Server Connection
+# Setup Credentials and Server Connection
 config = configparser.ConfigParser()
 config.read("C:/Users/User/Desktop/Project_Main/apikeys.ini")
 anvil.server.connect(config['server']['key'])
