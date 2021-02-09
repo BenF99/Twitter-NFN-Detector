@@ -1,9 +1,18 @@
-from pprint import pprint
-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# =============================================================================
+# Created By  : Ben Feigenbaum
+# Date Last Updated : 09/02/2021 - 15:42
+# =============================================================================
+"""Using Fine-Tuned RobertA model for classification"""
+# =============================================================================
+# Imports
 from transformers import RobertaForSequenceClassification, RobertaTokenizer, logging
 import torch
-
+# =============================================================================
+# Hide Language Model Outputs
 logging.set_verbosity_error()
+# =============================================================================
 
 
 class SequenceClassification:

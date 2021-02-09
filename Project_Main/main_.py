@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# =============================================================================
+# Created By  : Ben Feigenbaum
+# Date Last Updated : 09/02/2021 - 15:43
+# =============================================================================
+"""Main wrapper for classes"""
+# =============================================================================
+# Imports
 import configparser
 import firebase_admin
 from firebase_admin import credentials
@@ -5,7 +14,8 @@ from SequenceClassification import SequenceClassification
 from StoreData import StoreData
 from tweetGetter import TweetGetter
 import anvil.server
-
+# =============================================================================
+#Setup Credentials and Server Connection
 config = configparser.ConfigParser()
 config.read("C:/Users/User/Desktop/Project_Main/apikeys.ini")
 anvil.server.connect(config['server']['key'])
@@ -14,6 +24,8 @@ cred = credentials.Certificate("C:/Users/User/Desktop/Project_Main/twitter-nfn-d
 app = firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://twitter-nfn-detector-default-rtdb.europe-west1.firebasedatabase.app/'
 })
+# =============================================================================
+
 
 def getprobs(text):
     sq = SequenceClassification()

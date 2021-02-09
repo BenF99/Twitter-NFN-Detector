@@ -53,11 +53,11 @@ class TweetGetter:
 
     @staticmethod
     def gettweetdata(tweet):
-        urls = []
         tweet_content = None
 
         full_text = tweet['full_text']
         if tweet['entities']['urls']:
+            urls = []
             for i in range(len(tweet['entities']['urls'])):
                 urls.append(tweet['entities']['urls'][i]['expanded_url'])
             tweet_content = extractcontents(urls)[0]
