@@ -6,12 +6,13 @@
 # =============================================================================
 """Using Fine-Tuned RobertA model for classification"""
 # =============================================================================
-# Imports
-from transformers import RobertaForSequenceClassification, RobertaTokenizer, logging
-import torch
-# =============================================================================
 # Hide Language Model Outputs
-logging.set_verbosity_error()
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' # Suppress TF GPU Warnings
+# =============================================================================
+# Imports
+from transformers import RobertaForSequenceClassification, RobertaTokenizer
+import torch
 # =============================================================================
 
 
