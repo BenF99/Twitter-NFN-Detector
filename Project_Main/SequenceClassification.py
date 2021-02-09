@@ -51,6 +51,6 @@ class SequenceClassification:
             probs = logits.softmax(dim=-1)
 
         probs_ = probs.squeeze().tolist()
-        probs_2dp = [("{:.2f}".format(i)) for i in probs_]
+        probs_2dp = [("{:.3f}".format(i)) for i in probs_]
 
         return probs_2dp, token_count
