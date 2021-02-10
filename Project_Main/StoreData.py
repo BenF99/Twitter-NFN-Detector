@@ -9,13 +9,6 @@
 # Imports
 from firebase_admin import db
 # =============================================================================
-from firebase_admin import credentials
-import firebase_admin
-
-cred = credentials.Certificate("C:/Users/User/Desktop/Project_Main/twitter-nfn-detector-firebase.json")
-app = firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://twitter-nfn-detector-default-rtdb.europe-west1.firebasedatabase.app/'
-})
 
 
 class StoreData:
@@ -29,12 +22,12 @@ class StoreData:
         self.ref = db.reference("Twitter NFN Detector")
         self.child_node = 'real' if self.fake < self.real else 'fake'
 
-# TODO: If data exists, return probabilities
+    # TODO: If data exists, return probabilities
 
     def exists(self):
         node_dict = self.ref.child('real').get()
         for v in node_dict.values():
-            if self.text in v['text']:
+            if self.text == v['text']:
                 return True
         return False
 
