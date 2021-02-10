@@ -6,13 +6,12 @@
 # =============================================================================
 """Using Fine-Tuned RobertA model for classification"""
 # =============================================================================
-# Hide Language Model Outputs
-import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' # Suppress TF GPU Warnings
-# =============================================================================
 # Imports
-from transformers import RobertaForSequenceClassification, RobertaTokenizer
+from transformers import RobertaForSequenceClassification, RobertaTokenizer, logging
 import torch
+# =============================================================================
+# Hide Language Model Outputs
+logging.set_verbosity_error()
 # =============================================================================
 
 
@@ -43,7 +42,7 @@ class SequenceClassification:
         return tokens
 
     def check_probs(self):
-        tokens = self.tokenizer.encode(self._text, max_length=510, add_special_tokens=False)
+        tokens = self.tokenizer.encode(self._text, max_length=510, truncation=True, add_special_tokens=False)
         token_count = len(tokens)
         tokens = self.add_special_tokens(tokens)
 
