@@ -32,6 +32,7 @@ def getprobs(text):
     sq.text = text
     probs, num_tokens = sq.check_probs()
     fake, real = probs[0], probs[1]
+    print('fake' if fake > real else 'real')
     return fake, real, num_tokens
 
 
