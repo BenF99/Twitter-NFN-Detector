@@ -59,13 +59,13 @@ def getprobstweet(hashtag):
     tweet, tweet_content, fin_url = t.gettweetdata(t.tweet)
     text = tweet_content if tweet_content else tweet
     fake, real, num_tokens = getprobs(text)
-    StoreData(tweet, ht, fake, real, num_tokens, fin_url).store()
-
+    StoreData(text, ht, fake, real, num_tokens, fin_url).store()
     return tweet, fake, real, fin_url
 
 
 #anvil.server.wait_forever()
 
 for i in range(1,500):
+    print("Iteration:", i)
     getprobstweet(None)
-    time.sleep(5)
+    time.sleep(10)
