@@ -26,7 +26,7 @@ class StoreData:
     # TODO: If data exists, return probabilities
 
     def exists(self):
-        node_dict = self.ref.child('real').get()
+        node_dict = self.ref.child(self.child_node).get()
         for v in node_dict.values():
             if self.text == v['text']:
                 return True
