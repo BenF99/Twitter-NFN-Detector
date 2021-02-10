@@ -8,6 +8,8 @@
 # =============================================================================
 # Imports
 import configparser
+import time
+
 import firebase_admin
 from firebase_admin import credentials
 from SequenceClassification import SequenceClassification
@@ -18,7 +20,7 @@ import anvil.server
 # Setup Credentials and Server Connection
 config = configparser.ConfigParser()
 config.read("C:/Users/User/Desktop/Project_Main/apikeys.ini")
-anvil.server.connect(config['server']['key'])
+#anvil.server.connect(config['server']['key'])
 
 cred = credentials.Certificate("C:/Users/User/Desktop/Project_Main/twitter-nfn-detector-firebase.json")
 app = firebase_admin.initialize_app(cred, {
@@ -36,19 +38,20 @@ def getprobs(text):
     return fake, real, num_tokens
 
 
-@anvil.server.callable
+#@anvil.server.callable
 def getprobscustom(text):
+    fin_url = "N/A"
     if "twitter.com/" in text.lower():
         t = TweetGetter()
         t.tweet = text.split('/')[-1].split('?')[0]
-        text, tweet_content = t.gettweetdata(t.tweet)[0:2]
+        text, tweet_content, fin_url = t.gettweetdata(t.tweet)[0:2]
         text = tweet_content if tweet_content else text
     fake, real, num_tokens = getprobs(text)
-    StoreData(text, "N/A", fake, real, num_tokens).store()
+    StoreData(text, "N/A", fake, real, num_tokens, fin_url).store()
     return fake, real
 
 
-@anvil.server.callable
+#@anvil.server.callable
 def getprobstweet(hashtag):
     t = TweetGetter()
     tweet, ht = t.getrecentweet(hashtag)
@@ -56,9 +59,13 @@ def getprobstweet(hashtag):
     tweet, tweet_content, fin_url = t.gettweetdata(t.tweet)
     text = tweet_content if tweet_content else tweet
     fake, real, num_tokens = getprobs(text)
-    StoreData(tweet, ht, fake, real, num_tokens).store()
+    StoreData(tweet, ht, fake, real, num_tokens, fin_url).store()
 
     return tweet, fake, real, fin_url
 
 
-anvil.server.wait_forever()
+#anvil.server.wait_forever()
+
+for i in range(1,500):
+    getprobstweet(None)
+    time.sleep(5)
