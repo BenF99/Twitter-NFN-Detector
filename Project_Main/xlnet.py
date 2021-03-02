@@ -41,7 +41,3 @@ class XLNetClassification:
         probs = softmax(logits[0])
         return probs
 
-
-x = XLNetClassification()
-x.text = "My name is Ben"
-print(x.check_probs())
