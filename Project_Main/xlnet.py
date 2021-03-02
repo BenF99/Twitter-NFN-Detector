@@ -13,16 +13,17 @@ class XLNetClassification:
 
     def __init__(self, model_pn="D:/Language Models/XLNET-LARGE/"):
         self._text = None
-        model_args = ClassificationArgs(num_train_epochs=2,
-                                        warmup_ratio=0.1,
-                                        train_batch_size=12,
-                                        labels_list=['machine', 'human'],
-                                        overwrite_output_dir=True,
-                                        learning_rate=2e-5,
-                                        save_model_every_epoch=True,
-                                        use_multiprocessing=False,
-                                        save_steps=-1)
-        self.model = ClassificationModel("xlnet", model_pn, use_cuda=False, args=model_args)
+        # Hyperparameters
+        # model_args = ClassificationArgs(num_train_epochs=2,
+        #                                 warmup_ratio=0.1,
+        #                                 train_batch_size=12,
+        #                                 labels_list=['machine', 'human'],
+        #                                 overwrite_output_dir=True,
+        #                                 learning_rate=2e-5,
+        #                                 save_model_every_epoch=True,
+        #                                 use_multiprocessing=False,
+        #                                 save_steps=-1)
+        self.model = ClassificationModel("xlnet", model_pn, use_cuda=False)
 
     @property
     def text(self):
