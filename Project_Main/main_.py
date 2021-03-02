@@ -20,7 +20,7 @@ import anvil.server
 # Setup Credentials and Server Connection
 config = configparser.ConfigParser()
 config.read("C:/Users/User/Desktop/Project_Main/apikeys.ini")
-#anvil.server.connect(config['server']['key'])
+anvil.server.connect(config['server']['key'])
 
 cred = credentials.Certificate("C:/Users/User/Desktop/Project_Main/twitter-nfn-detector-firebase.json")
 app = firebase_admin.initialize_app(cred, {
@@ -38,7 +38,7 @@ def getprobs(text):
     return fake, real, num_tokens
 
 
-#@anvil.server.callable
+@anvil.server.callable
 def getprobscustom(text):
     fin_url = "N/A"
     if "twitter.com/" in text.lower():
@@ -51,7 +51,7 @@ def getprobscustom(text):
     return fake, real
 
 
-#@anvil.server.callable
+@anvil.server.callable
 def getprobstweet(hashtag):
     t = TweetGetter()
     tweet, ht = t.getrecentweet(hashtag)
@@ -63,9 +63,4 @@ def getprobstweet(hashtag):
     return tweet, fake, real, fin_url
 
 
-#anvil.server.wait_forever()
-
-for i in range(1,500):
-    print("Iteration:", i)
-    getprobstweet(None)
-    time.sleep(10)
+anvil.server.wait_forever()
