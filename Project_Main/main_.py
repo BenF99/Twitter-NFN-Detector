@@ -8,11 +8,11 @@
 # =============================================================================
 # Imports
 import configparser
-import time
-
 import firebase_admin
 from firebase_admin import credentials
+
 from SequenceClassification import SequenceClassification
+from xlnet import XLNetClassification
 from StoreData import StoreData
 from tweetGetter import TweetGetter
 import anvil.server
@@ -29,8 +29,9 @@ app = firebase_admin.initialize_app(cred, {
 # =============================================================================
 
 
-def getprobs(text):
-    sq = SequenceClassification()
+def getprobs(text, model):
+    choices = {'roberta': SequenceClassification, 'xlnet': XLNetClassification}
+    sq = choices.get(model)()
     sq.text = text
     probs, num_tokens = sq.check_probs()
     fake, real = probs[0], probs[1]
@@ -39,49 +40,28 @@ def getprobs(text):
 
 
 @anvil.server.callable
-def getprobscustom(text):
-    fin_url = "N/A"
-    if "twitter.com/" in text.lower():
-        t = TweetGetter()
-        t.tweet = text.split('/')[-1].split('?')[0]
-        text, tweet_content, fin_url = t.gettweetdata(t.tweet)
-        text = tweet_content if tweet_content else text
-    fake, real, num_tokens = getprobs(text)
-    StoreData(text, "N/A", fake, real, num_tokens, fin_url).store()
-    return fake, real
-
-
-@anvil.server.callable
-def getprobstweet(hashtag):
+def response(text, model, is_hashtag=True):
     t = TweetGetter()
-    tweet, ht = t.getrecentweet(hashtag)
-    t.tweet = tweet
-    tweet, tweet_content, fin_url = t.gettweetdata(t.tweet)
-    text = tweet_content if tweet_content else tweet
-    fake, real, num_tokens = getprobs(text)
-    StoreData(text, ht, fake, real, num_tokens, fin_url).store()
-    return tweet, fake, real, fin_url
+    tweet = None
+    if is_hashtag:
+        tweet, ht = t.getrecentweet(text)
+        t.tweet = tweet
+        tweet, tweet_content, fin_url = t.gettweetdata(t.tweet)
+        text = tweet_content if tweet_content else tweet
+    else:
+        ht = "N/A"
+        fin_url = "N/A"
+        if "twitter.com/" in text.lower():
+            t.tweet = text.split('/')[-1].split('?')[0]
+            tweet, tweet_content, fin_url = t.gettweetdata(t.tweet)
+            text = tweet_content if tweet_content else tweet
 
-# TODO: MAY NOT NEED DEFAULT HT WHEN CALLING RECENT TWEET
-
-# def getdata(text, model, default = True):
-#     t = TweetGetter()
-#     if default:
-#         tweet, ht = t.getrecentweet(text)
-#         t.tweet = tweet
-#         tweet, tweet_content, fin_url = t.gettweetdata(t.tweet)
-#         text = tweet_content if tweet_content else tweet
-#     else:
-#         ht = "N/A"
-#         fin_url = "N/A"
-#         if "twitter.com/" in text.lower():
-#             t.tweet = text.split('/')[-1].split('?')[0]
-#             tweet, tweet_content, fin_url = t.gettweetdata(t.tweet)
-#             text = tweet_content if tweet_content else tweet
-#     fake, real, num_tokens = getprobs(text)
-#     StoreData(text, ht, fake, real, num_tokens, fin_url).store()
-#     return fake, real
-
+    fake, real, num_tokens = getprobs(text, model.lower())
+    StoreData(text, ht, fake, real, num_tokens, fin_url, model).store()
+    if is_hashtag:
+        return tweet, fake, real, fin_url
+    else:
+        return fake, real
 
 
 anvil.server.wait_forever()
