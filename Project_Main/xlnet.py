@@ -1,13 +1,20 @@
-import csv
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# =============================================================================
+# Created By  : Ben Feigenbaum
+# Date Last Updated : 09/02/2021 - 15:42
+# =============================================================================
+"""Using Fine-Tuned XLNet model for classification"""
+# =============================================================================
+# Imports
 from simpletransformers.classification import ClassificationModel, ClassificationArgs
-import pandas as pd
-import logging
 from scipy.special import softmax
+from transformers import XLNetTokenizer, logging
 
-logging.basicConfig(level=logging.INFO)
-transformers_logger = logging.getLogger("transformers")
-transformers_logger.setLevel(logging.WARNING)
-
+# =============================================================================
+# Hide Language Model Outputs
+logging.set_verbosity_error()
+# =============================================================================
 
 class XLNetClassification:
 
@@ -24,6 +31,7 @@ class XLNetClassification:
         #                                 use_multiprocessing=False,
         #                                 save_steps=-1)
         self.model = ClassificationModel("xlnet", model_pn, use_cuda=False)
+        self.tokenizer = XLNetTokenizer.from_pretrained(model_pn)
 
     @property
     def text(self):
@@ -39,5 +47,5 @@ class XLNetClassification:
     def check_probs(self):
         _, logits = self.model.predict([self._text])
         probs = softmax(logits[0])
-        return probs
-
+        probs_2dp = [("{:.3f}".format(i)) for i in probs]
+        return probs_2dp, len(self.tokenizer.encode(self._text, add_special_tokens=False))
