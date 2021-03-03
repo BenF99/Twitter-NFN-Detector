@@ -44,7 +44,7 @@ def getprobscustom(text):
     if "twitter.com/" in text.lower():
         t = TweetGetter()
         t.tweet = text.split('/')[-1].split('?')[0]
-        text, tweet_content, fin_url = t.gettweetdata(t.tweet)[0:2]
+        text, tweet_content, fin_url = t.gettweetdata(t.tweet)
         text = tweet_content if tweet_content else text
     fake, real, num_tokens = getprobs(text)
     StoreData(text, "N/A", fake, real, num_tokens, fin_url).store()
@@ -61,6 +61,22 @@ def getprobstweet(hashtag):
     fake, real, num_tokens = getprobs(text)
     StoreData(text, ht, fake, real, num_tokens, fin_url).store()
     return tweet, fake, real, fin_url
+
+# TODO: MAY NOT NEED DEFAULT HT WHEN CALLING RECENT TWEET
+
+def getdata(inp, model, default = True):
+    t = TweetGetter()
+    if default:
+        tweet, ht = t.getrecentweet(inp)
+        t.tweet = tweet
+    else:
+        t.tweet = inp.split('/')[-1].split('?')[0]
+    tweet, tweet_content, fin_url = t.gettweetdata(t.tweet)
+    text = tweet_content if tweet_content else tweet
+    fake, real, num_tokens = getprobs(model, text) # ADD MODEL
+    StoreData(text, ht if default else "N/A", fake, real, num_tokens, fin_url).store()
+    return tweet, fake, real, fin_url if default else fake, real
+
 
 
 anvil.server.wait_forever()
