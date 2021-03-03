@@ -13,13 +13,10 @@ from firebase_admin import db
 
 class StoreData:
 
-    def __init__(self, text, hashtag, fake, real, token_count, url):
-        self.text = text
-        self.hashtag = hashtag
-        self.fake = fake
-        self.real = real
-        self.token_count = token_count
-        self.url = url
+    def __init__(self, text, hashtag, fake, real, token_count, url, model):
+        self.text, self.hashtag, self.fake, self.real, self.token_count, self.url, self.model = text, hashtag, fake, \
+                                                                                                real, token_count, url,\
+                                                                                                model
         self.ref = db.reference("Twitter NFN Detector")
         self.child_node = 'real' if self.fake < self.real else 'fake'
 
@@ -28,7 +25,7 @@ class StoreData:
     def exists(self):
         node_dict = self.ref.child(self.child_node).get()
         for v in node_dict.values():
-            if self.text == v['text']:
+            if self.text == v['text'] and self.model == v['model']:
                 return True
         return False
 
@@ -41,6 +38,7 @@ class StoreData:
                 'fake': self.fake,
                 'real': self.real,
                 'token_count': self.token_count,
-                'url' : self.url
+                'url' : self.url,
+                'model' : self.model
 
             })
