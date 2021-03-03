@@ -64,23 +64,23 @@ def getprobstweet(hashtag):
 
 # TODO: MAY NOT NEED DEFAULT HT WHEN CALLING RECENT TWEET
 
-def getdata(text, model, default = True):
-    t = TweetGetter()
-    if default:
-        tweet, ht = t.getrecentweet(text)
-        t.tweet = tweet
-        tweet, tweet_content, fin_url = t.gettweetdata(t.tweet)
-        text = tweet_content if tweet_content else tweet
-    else:
-        ht = "N/A"
-        fin_url = "N/A"
-        if "twitter.com/" in text.lower():
-            t.tweet = text.split('/')[-1].split('?')[0]
-            tweet, tweet_content, fin_url = t.gettweetdata(t.tweet)
-            text = tweet_content if tweet_content else tweet
-    fake, real, num_tokens = getprobs(text)
-    StoreData(text, ht, fake, real, num_tokens, fin_url).store()
-    return fake, real
+# def getdata(text, model, default = True):
+#     t = TweetGetter()
+#     if default:
+#         tweet, ht = t.getrecentweet(text)
+#         t.tweet = tweet
+#         tweet, tweet_content, fin_url = t.gettweetdata(t.tweet)
+#         text = tweet_content if tweet_content else tweet
+#     else:
+#         ht = "N/A"
+#         fin_url = "N/A"
+#         if "twitter.com/" in text.lower():
+#             t.tweet = text.split('/')[-1].split('?')[0]
+#             tweet, tweet_content, fin_url = t.gettweetdata(t.tweet)
+#             text = tweet_content if tweet_content else tweet
+#     fake, real, num_tokens = getprobs(text)
+#     StoreData(text, ht, fake, real, num_tokens, fin_url).store()
+#     return fake, real
 
 
 
