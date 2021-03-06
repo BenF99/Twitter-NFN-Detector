@@ -30,7 +30,9 @@ class Main(MainTemplate):
       self.hashtag.enabled = False
       while True:
         with Notification(self.wait_msg):
-          self.text, self.fake_, self.real_, self.finurl_ = anvil.server.call("getprobstweet", self.hashtag.text)
+          self.text, self.fake_, self.real_, self.finurl_ = anvil.server.call("response",
+                                                                              self.hashtag.text,
+                                                                              self.lm_dropdown.selected_value)
         if self.text:
           self.loadtweet.enabled = True
           self.custom_input.enabled = True
@@ -47,7 +49,7 @@ class Main(MainTemplate):
       self.final_url.text, self.final_url.url = "Tweet (Source)", self.finurl_
     pass
 
-  def check_box_1_change(self, **event_args):
+  def custom_input_change(self, **event_args):
     if self.custom_input.checked == True:
       self.tweet_area.enabled = True
       self.hashtag.enabled = False
@@ -71,12 +73,15 @@ class Main(MainTemplate):
     if self.tweet_area.text == "":
       alert("Please input text")
     else:
-      if self.tweet_area.text != self.currtext:
+      #if self.tweet_area.text != self.currtext:
         self.custom_input.enabled = False
         self.submit.enabled = False
         self.tweet_area.enabled = False
         with Notification(self.wait_msg):
-          self.fake_, self.real_ = anvil.server.call('getprobscustom', self.tweet_area.text)
+          self.fake_, self.real_ = anvil.server.call('response', self.tweet_area.text, self.lm_dropdown.selected_value, False)
+#           anvil.server.call("getprobstweet",
+#                                                                               self.hashtag.text,
+#                                                                               self.lm_dropdown.selected_value)
           self.fake.text = self.fake_
           self.real.text = self.real_
           self.currtext = self.tweet_area.text
@@ -84,15 +89,3 @@ class Main(MainTemplate):
         self.submit.enabled = True
         self.tweet_area.enabled = True
     pass
-
-
-
-
-
-
-
-
-
-
-
-
