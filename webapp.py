@@ -79,9 +79,6 @@ class Main(MainTemplate):
         self.tweet_area.enabled = False
         with Notification(self.wait_msg):
           self.fake_, self.real_ = anvil.server.call('response', self.tweet_area.text, self.lm_dropdown.selected_value, False)
-#           anvil.server.call("getprobstweet",
-#                                                                               self.hashtag.text,
-#                                                                               self.lm_dropdown.selected_value)
           self.fake.text = self.fake_
           self.real.text = self.real_
           self.currtext = self.tweet_area.text
