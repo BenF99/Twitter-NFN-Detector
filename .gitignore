@@ -16,3 +16,8 @@ Project_Main/test.py
 Project_Main/main.py
 Project_Main/.idea/vcs.xml
 Project_Main/__pycache__/xlnet.cpython-38.pyc
+*.pyc
+Project_Main/cache_dir/cached_dev_xlnet_128_2_10000
+Project_Main/cache_dir/cached_dev_xlnet_128_2_1
+Project_Main/cache_dir/cached_dev_deberta_128_2_10000
+Project_Main/cache_dir/cached_dev_deberta_128_2_1
