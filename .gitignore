@@ -22,3 +22,4 @@ Project_Main/cache_dir/cached_dev_xlnet_128_2_1
 Project_Main/cache_dir/cached_dev_deberta_128_2_10000
 Project_Main/cache_dir/cached_dev_deberta_128_2_1
 Project_Main/outputs/eval_results.txt
+*.xml
