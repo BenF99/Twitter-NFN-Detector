@@ -20,7 +20,7 @@ class RoBERTaClassification:
     def __init__(self, model_pn="D:/Language Models/ROBERTA-LARGE/"):
         self.model = RobertaForSequenceClassification.from_pretrained(model_pn)
         self.tokenizer = RobertaTokenizer.from_pretrained(model_pn)
-        self.ft_weights = torch.load('D:/Language Models/ROBERTA-LARGE/detector-large.pt', map_location='cpu')
+        self.ft_weights = torch.load(f'{model_pn}{"detector-large.pt"}', map_location='cpu')
         self.model.to(torch.device("cpu"))
         self.model.load_state_dict(self.ft_weights['model_state_dict'], strict=False)
         self.model.eval()
