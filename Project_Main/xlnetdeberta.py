@@ -9,29 +9,21 @@
 # Imports
 from simpletransformers.classification import ClassificationModel, ClassificationArgs
 from scipy.special import softmax
-from transformers import XLNetTokenizer, logging
-
+from transformers import XLNetTokenizer, DebertaTokenizer, logging
 # =============================================================================
 # Hide Language Model Outputs
 logging.set_verbosity_error()
 # =============================================================================
 
-class XLNetClassification:
 
-    def __init__(self, model_pn="D:/Language Models/XLNET-LARGE/"):
+class XLNetDeBERTaClassification:
+
+    def __init__(self, model, model_dir="D:/Language Models/"):
+        model_pn = {'xlnet': f'{model_dir}{"XLNET-LARGE/"}', 'deberta': f'{model_dir}{"DEBERTA-LARGE/"}'}[model]
+        self.model = ClassificationModel(model, model_pn, use_cuda=False)
+        self.tokenizer = XLNetTokenizer.from_pretrained(model_pn) if model == 'xlnet' \
+            else DebertaTokenizer.from_pretrained(model_pn)
         self._text = None
-        # Hyperparameters
-        # model_args = ClassificationArgs(num_train_epochs=2,
-        #                                 warmup_ratio=0.1,
-        #                                 train_batch_size=12,
-        #                                 labels_list=['machine', 'human'],
-        #                                 overwrite_output_dir=True,
-        #                                 learning_rate=2e-5,
-        #                                 save_model_every_epoch=True,
-        #                                 use_multiprocessing=False,
-        #                                 save_steps=-1)
-        self.model = ClassificationModel("xlnet", model_pn, use_cuda=False)
-        self.tokenizer = XLNetTokenizer.from_pretrained(model_pn)
 
     @property
     def text(self):
