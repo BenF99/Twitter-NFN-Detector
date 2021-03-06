@@ -11,11 +11,12 @@ import configparser
 import firebase_admin
 from firebase_admin import credentials
 
-from SequenceClassification import SequenceClassification
-from xlnet import XLNetClassification
+from roberta import RoBERTaClassification
+from xlnetdeberta import XLNetDeBERTaClassification
 from StoreData import StoreData
 from tweetGetter import TweetGetter
 import anvil.server
+
 # =============================================================================
 # Setup Credentials and Server Connection
 config = configparser.ConfigParser()
@@ -30,8 +31,10 @@ app = firebase_admin.initialize_app(cred, {
 
 
 def getprobs(text, model):
-    choices = {'roberta': SequenceClassification, 'xlnet': XLNetClassification}
-    sq = choices.get(model)()
+    if model == "roberta":
+        sq = RoBERTaClassification()
+    else:
+        sq = XLNetDeBERTaClassification(model)
     sq.text = text
     probs, num_tokens = sq.check_probs()
     fake, real = probs[0], probs[1]
