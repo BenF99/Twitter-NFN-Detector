@@ -8,6 +8,8 @@
 # =============================================================================
 # Imports
 from firebase_admin import db
+
+
 # =============================================================================
 
 
@@ -15,7 +17,7 @@ class StoreData:
 
     def __init__(self, text, hashtag, fake, real, token_count, url, model):
         self.text, self.hashtag, self.fake, self.real, self.token_count, self.url, self.model = text, hashtag, fake, \
-                                                                                                real, token_count, url,\
+                                                                                                real, token_count, url, \
                                                                                                 model
         self.ref = db.reference("Twitter NFN Detector")
         self.child_node = 'real' if self.fake < self.real else 'fake'
@@ -38,7 +40,7 @@ class StoreData:
                 'fake': self.fake,
                 'real': self.real,
                 'token_count': self.token_count,
-                'url' : self.url,
-                'model' : self.model
+                'url': self.url,
+                'model': self.model
 
             })
