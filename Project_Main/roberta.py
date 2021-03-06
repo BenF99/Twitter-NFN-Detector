@@ -15,7 +15,7 @@ logging.set_verbosity_error()
 # =============================================================================
 
 
-class SequenceClassification:
+class RoBERTaClassification:
 
     def __init__(self, model_pn="D:/Language Models/ROBERTA-LARGE/"):
         self.model = RobertaForSequenceClassification.from_pretrained(model_pn)
