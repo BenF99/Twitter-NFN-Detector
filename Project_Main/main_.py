@@ -42,6 +42,16 @@ def getprobs(text, model):
     return fake, real, num_tokens
 
 
+def store(sd, ht, f, r, nt, fu):
+    sd.hashtag = ht
+    sd.fake = f
+    sd.child_node = 'fake' if f > r else 'real'
+    sd.real = r
+    sd.token_count = nt
+    sd.url = fu
+    sd.store()
+
+
 @anvil.server.callable
 def response(text, model, is_hashtag=True):
     t = TweetGetter()
@@ -58,9 +68,13 @@ def response(text, model, is_hashtag=True):
             t.tweet = text.split('/')[-1].split('?')[0]
             tweet, tweet_content, fin_url = t.gettweetdata(t.tweet)
             text = tweet_content if tweet_content else tweet
-
-    fake, real, num_tokens = getprobs(text, model.lower())
-    StoreData(text, ht, fake, real, num_tokens, fin_url, model).store()
+    sd = StoreData(text, model)
+    e_ = sd.exists()
+    if e_:
+        fake, real = e_
+    else:
+        fake, real, num_tokens = getprobs(text, model.lower())
+        store(sd, ht, fake, real, num_tokens, fin_url)
     if is_hashtag:
         return tweet, fake, real, fin_url
     else:
