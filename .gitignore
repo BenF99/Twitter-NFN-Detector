@@ -10,3 +10,5 @@ Project_Main/test.py
 Project_Main/main.py
 Project_Main/cache_dir/
 Project_Main/outputs/
+Project_Main/train_test_setup/cache_dir/
+Project_Main/train_test_setup/outputs/
