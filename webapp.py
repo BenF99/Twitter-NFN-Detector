@@ -1,6 +1,5 @@
 from ._anvil_designer import MainTemplate
 from anvil import *
-import plotly.graph_objects as go
 import anvil.server
 import re
 
@@ -8,6 +7,7 @@ class Main(MainTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    set_default_error_handling(self.error_handler)
     self.text = None
     self.fake_ = None
     self.real_ = None
@@ -16,6 +16,15 @@ class Main(MainTemplate):
     self.submit.visible = False
     self.wait_msg = "Retrieving information from server, Please wait..."
     
+  def error_handler(self, err):
+    admin = "1811288@brunel.ac.uk"
+    err = str(err)
+    if "disconnected" in err:
+      alert("The server is not currently available, please contact: " + admin,
+            title = "Error: Server not runnning")
+    else:
+      alert(err + ", please contact: " + admin, title="An error has occurred")
+      
   def load_tweet_click(self, **event_args):
     ht_valid = True
     if self.hashtag.text:
