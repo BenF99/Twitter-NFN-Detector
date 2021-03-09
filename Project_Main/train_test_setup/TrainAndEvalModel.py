@@ -22,16 +22,17 @@ transformers_logger.setLevel(logging.WARNING)
 class TrainAndEval:
 
     def __init__(self, model_type, model_name, model_args):
-        self.train_df = pd.read_pickle("/content/drive/MyDrive/train_df_500000")
-        self.eval_df = pd.read_pickle("/content/drive/MyDrive/test_df_500000")
-        self.model = ClassificationModel(model_type, model_name, use_cuda=True, args=model_args)
+        self.train_df = pd.read_pickle("D:/Language Models/train_df_500000")
+        self.eval_df = pd.read_pickle("D:/Language Models/test_df_500000")
+        self.model = ClassificationModel(model_type, model_name, use_cuda=False, args=model_args)
 
     def train(self):
         self.model.train_model(self.train_df)
 
     def eval(self):
-        result, model_outputs, _ = self.model.eval_model(self.eval_df)
-        return result, model_outputs
+        result, model_outputs, wrong_predictions = self.model.eval_model(self.eval_df)
+        print(result, model_outputs, wrong_predictions)
+        return result, model_outputs, wrong_predictions
 
 
 # xlnet-large-cased
@@ -40,6 +41,6 @@ xlnet.train()
 xlnet.eval()
 
 # microsoft/deberta-large
-xlnet = TrainAndEval("deberta", "microsoft/deberta-large", db_args)
-xlnet.train()
-xlnet.eval()
+deberta = TrainAndEval("deberta", "microsoft/deberta-large", db_args)
+deberta.train()
+deberta.eval()
