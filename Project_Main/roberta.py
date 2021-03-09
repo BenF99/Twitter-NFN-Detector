@@ -36,7 +36,7 @@ class RoBERTaClassification:
             raise TypeError("Error: Invalid Input Type")
         else:
             self._text = raw_text
- 
+
     def add_special_tokens(self, tokens):
         tokens = torch.tensor([self.tokenizer.bos_token_id] + tokens + [self.tokenizer.eos_token_id]).unsqueeze(0)
         return tokens

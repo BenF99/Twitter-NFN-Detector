@@ -54,6 +54,7 @@ def store(sd, ht, f, r, nt, fu):
 
 @anvil.server.callable
 def response(text, model, is_hashtag=True):
+    model = model.lower()
     t = TweetGetter()
     tweet = None
     if is_hashtag:
@@ -73,7 +74,7 @@ def response(text, model, is_hashtag=True):
     if e_:
         fake, real = e_
     else:
-        fake, real, num_tokens = getprobs(text, model.lower())
+        fake, real, num_tokens = getprobs(text, model)
         store(sd, ht, fake, real, num_tokens, fin_url)
     if is_hashtag:
         return tweet, fake, real, fin_url
