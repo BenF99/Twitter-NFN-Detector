@@ -40,6 +40,6 @@ xlnet.train()
 xlnet.eval()
 
 # microsoft/deberta-large
-xlnet = TrainAndEval("xlnet", "xlnet-large-cased", db_args)
+xlnet = TrainAndEval("deberta", "microsoft/deberta-large", db_args)
 xlnet.train()
 xlnet.eval()
