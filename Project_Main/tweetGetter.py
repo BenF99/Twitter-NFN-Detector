@@ -54,18 +54,16 @@ class TweetGetter:
 
     @staticmethod
     def gettweetdata(tweet):
-        tweet_content = None
-
         full_tweet = tweet['full_text']
         if tweet['entities']['urls']:
             urls = []
             for i in range(len(tweet['entities']['urls'])):
                 urls.append(tweet['entities']['urls'][i]['expanded_url'])
-            tweet_content = extractcontents(urls)[0]
+            final_text = extractcontents(urls)[0]
+        else:
+            final_text = full_tweet
 
         fin_url = "https://twitter.com/twitter/statuses/" + tweet['id_str']
-
-        final_text = tweet_content if tweet_content else full_tweet
 
         return full_tweet, final_text, fin_url
 
