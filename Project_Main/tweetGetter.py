@@ -56,7 +56,7 @@ class TweetGetter:
     def gettweetdata(tweet):
         tweet_content = None
 
-        full_text = tweet['full_text']
+        full_tweet = tweet['full_text']
         if tweet['entities']['urls']:
             urls = []
             for i in range(len(tweet['entities']['urls'])):
@@ -65,7 +65,9 @@ class TweetGetter:
 
         fin_url = "https://twitter.com/twitter/statuses/" + tweet['id_str']
 
-        return full_text, tweet_content, fin_url
+        final_text = tweet_content if tweet_content else full_tweet
+
+        return full_tweet, final_text, fin_url
 
 
 def extractcontents(urls):
