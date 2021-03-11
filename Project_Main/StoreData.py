@@ -8,7 +8,7 @@
 # =============================================================================
 # Imports
 from firebase_admin import db
-
+from datetime import datetime
 
 # =============================================================================
 
@@ -40,6 +40,6 @@ class StoreData:
             'real': self.real,
             'token_count': self.token_count,
             'url': self.url,
-            'model': self.model
-
+            'model': self.model,
+            'datetime': str(datetime.today().strftime('%d-%m-%Y %H:%M'))
         })
