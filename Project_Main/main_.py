@@ -8,9 +8,11 @@
 # =============================================================================
 # Imports
 import configparser
+import random
+import time
+
 import firebase_admin
 from firebase_admin import credentials
-
 from roberta import RoBERTaClassification
 from xlnetdeberta import XLNetDeBERTaClassification
 from StoreData import StoreData
@@ -60,15 +62,13 @@ def response(text, model, is_hashtag=True):
     if is_hashtag:
         tweet, ht = t.getrecentweet(text)
         t.tweet = tweet
-        tweet, tweet_content, fin_url = t.gettweetdata(t.tweet)
-        text = tweet_content if tweet_content else tweet
+        tweet, text, fin_url = t.gettweetdata(t.tweet)
     else:
         ht = "N/A"
         fin_url = "N/A"
         if "twitter.com/" in text.lower():
             t.tweet = text.split('/')[-1].split('?')[0]
-            tweet, tweet_content, fin_url = t.gettweetdata(t.tweet)
-            text = tweet_content if tweet_content else tweet
+            tweet, text, fin_url = t.gettweetdata(t.tweet)
     sd = StoreData(text, model)
     e_ = sd.exists()
     if e_:
