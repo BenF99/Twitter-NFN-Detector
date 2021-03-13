@@ -41,10 +41,11 @@ class RoBERTaClassification:
         return tokens
 
     def check_probs(self):
-        tokens = self.tokenizer.encode(self._text, max_length=510, truncation=True, add_special_tokens=False)
+        tokens = self.tokenizer.encode(self._text, add_special_tokens=False)
+        if len(tokens) > 510:
+            tokens = tokens[:255] + tokens[-255:]
         token_count = len(tokens)
         tokens = self.add_special_tokens(tokens)
-
         with torch.no_grad():
             logits = self.model(tokens.to("cpu"))[0]
             probs = logits.softmax(dim=-1)
