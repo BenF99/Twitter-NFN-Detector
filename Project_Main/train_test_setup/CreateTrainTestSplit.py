@@ -27,6 +27,7 @@ def add_class(type_, path):
 
 def concat_dfs(df1, df2):
     df = pd.concat([df1, df2]).reset_index(drop=True)
+    df.columns = ["text", "labels"]
     return df
 
 
