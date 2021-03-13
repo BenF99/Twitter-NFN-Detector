@@ -11,21 +11,33 @@ import pandas as pd
 
 
 def fixnewlines(df):
-    return df['text'].replace(to_replace=[r"\\t|\\n|\\r", "\t|\n|\r"], value=["", ""], regex=True, inplace=True)
+    df['text'].replace(to_replace=[r"\\t|\\n|\\r", "\t|\n|\r"], value=["", ""], regex=True, inplace=True)
+    return df
 
 
-def createdataset(pkl_name, machine, human):
-    df1 = pd.read_json(machine, lines=True, encoding='utf8').text.to_frame()
-    df2 = pd.read_json(human, lines=True, encoding='utf8').text.to_frame()
+def add_class(type, path):
+    df = pd.read_json(path, lines=True, encoding='utf8').text.to_frame()
+    df = fixnewlines(df)
+    if type == 'real':
+        df['class'] = 'human'
+    else:
+        df['class'] = 'machine'
+    return df
 
-    df1, df2 = fixnewlines(df1), fixnewlines(df2)
-    df1['class'], df2['class'] = 'machine', 'human'
 
+def concat_dfs(df1, df2):
     df = pd.concat([df1, df2]).reset_index(drop=True)
-    df.columns = ["text", "labels"]
-    df.to_pickle(pkl_name)
+    return df
 
 
-_dir = "C:/Users/User/Desktop/Project_Main/data/"
-createdataset("test_df_500000", f'{_dir}{"xl-1542M.test.jsonl"}', f'{_dir}{"webtext.test.jsonl"}')
-createdataset("train_df_500000", f'{_dir}{"xl-1542M.train.jsonl"}', f'{_dir}{"webtext.train.jsonl"}')
+if __name__ == '__main__':
+    _dir = "C:/Users/User/Desktop/Project_Main/data/"
+
+    train_fake = add_class('fake', f'{_dir}{"xl-1542M.train.jsonl"}')
+    train_real = add_class('real', f'{_dir}{"webtext.train.jsonl"}')
+
+    test_fake = add_class('fake', f'{_dir}{"xl-1542M.test.jsonl"}')
+    test_real = add_class('real', f'{_dir}{"webtext.test.jsonl"}')
+
+    concat_dfs(train_fake, train_real).to_pickle("train_df_500000")
+    concat_dfs(test_fake, test_real).to_pickle("test_df_500000")
