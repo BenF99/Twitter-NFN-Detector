@@ -15,10 +15,10 @@ def fixnewlines(df):
     return df
 
 
-def add_class(type, path):
+def add_class(type_, path):
     df = pd.read_json(path, lines=True, encoding='utf8').text.to_frame()
     df = fixnewlines(df)
-    if type == 'real':
+    if type_ == 'real':
         df['class'] = 'human'
     else:
         df['class'] = 'machine'
