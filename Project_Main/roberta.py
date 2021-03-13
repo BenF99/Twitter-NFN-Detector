@@ -43,7 +43,7 @@ class RoBERTaClassification:
     def check_probs(self):
         tokens = self.tokenizer.encode(self._text, add_special_tokens=False)
         if len(tokens) > 510:
-            tokens = tokens[:255] + tokens[-255:]
+            tokens = tokens[:128] + tokens[-382:]
         token_count = len(tokens)
         tokens = self.add_special_tokens(tokens)
         with torch.no_grad():
@@ -54,3 +54,4 @@ class RoBERTaClassification:
         probs_2dp = [float("{:.3f}".format(i)) for i in probs_]
 
         return probs_2dp, token_count
+
