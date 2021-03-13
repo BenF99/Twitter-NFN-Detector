@@ -9,7 +9,7 @@
 import pandas as pd
 from simpletransformers.classification import ClassificationModel
 import logging
-from .lm_args import *
+from train_test_setup.lm_args import xl_args, db_args
 # =============================================================================
 # Suppress Certain Language Model Outputs
 logging.basicConfig(level=logging.INFO)
