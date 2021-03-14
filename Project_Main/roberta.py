@@ -51,7 +51,7 @@ class RoBERTaClassification:
             probs = logits.softmax(dim=-1)
 
         probs_ = probs.squeeze().tolist()
-        probs_2dp = [float("{:.3f}".format(i)) for i in probs_]
+        probs_3dp = [float("{:.3f}".format(i)) for i in probs_]
 
-        return probs_2dp, token_count
+        return probs_3dp, token_count
 
