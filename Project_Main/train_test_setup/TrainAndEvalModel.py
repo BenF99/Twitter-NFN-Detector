@@ -34,12 +34,13 @@ class TrainAndEval:
         return result, model_outputs, wrong_predictions
 
 
-# xlnet-large-cased
-xlnet = TrainAndEval("xlnet", "xlnet-large-cased", xl_args)
-xlnet.train()
-xlnet.eval()
+if __name__ == '__main__':
+    # xlnet-large-cased
+    xlnet = TrainAndEval("xlnet", "xlnet-large-cased", xl_args)
+    xlnet.train()
+    xlnet.eval()
 
-# microsoft/deberta-large
-deberta = TrainAndEval("deberta", "microsoft/deberta-large", db_args)
-deberta.train()
-deberta.eval()
+    # microsoft/deberta-large
+    deberta = TrainAndEval("deberta", "microsoft/deberta-large", db_args)
+    deberta.train()
+    deberta.eval()
