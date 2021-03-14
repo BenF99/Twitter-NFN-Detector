@@ -7,9 +7,6 @@
 # =============================================================================
 # Imports
 import configparser
-import random
-import time
-
 import firebase_admin
 from firebase_admin import credentials
 from roberta import RoBERTaClassification
