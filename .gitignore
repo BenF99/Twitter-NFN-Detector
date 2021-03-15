@@ -12,3 +12,4 @@ Project_Main/cache_dir/
 Project_Main/outputs/
 Project_Main/train_test_setup/cache_dir/
 Project_Main/train_test_setup/outputs/
+Project_Main/tests/__init__.py
