@@ -40,6 +40,5 @@ class XLNetDeBERTaClassification:
     def check_probs(self):
         _, logits = self.model.predict([self._text])
         probs = softmax(logits[0])
-        probs_3dp = [float("{:.3f}".format(i)) for i in probs]
+        probs_3dp = ["{:.5f}".format(float(i)) for i in probs]
         return probs_3dp, len(self.tokenizer.encode(self._text, add_special_tokens=False))
-
