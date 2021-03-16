@@ -59,6 +59,8 @@ class TweetGetter:
             for i in range(len(tweet['entities']['urls'])):
                 urls.append(tweet['entities']['urls'][i]['expanded_url'])
             final_text = extractcontents(urls)[0]
+            if final_text is None:
+                final_text = full_tweet
         else:
             final_text = full_tweet
 
