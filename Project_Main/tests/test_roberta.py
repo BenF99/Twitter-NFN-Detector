@@ -1,5 +1,3 @@
-import torch
-
 from roberta import RoBERTaClassification
 import pytest
 
@@ -19,7 +17,6 @@ def test_add_special_tokens():
     a = x.add_special_tokens(tokens).tolist()[0]
     tokens_st = [0, 387, 2962, 523, 589, 2]
     assert a == tokens_st
-
 
 
 def test_check_probs():
