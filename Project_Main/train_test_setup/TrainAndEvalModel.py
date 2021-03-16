@@ -23,7 +23,7 @@ class TrainAndEval:
     def __init__(self, model_type, model_name, model_args):
         self.train_df = pd.read_pickle("D:/Language Models/train_df_500000")
         self.eval_df = pd.read_pickle("D:/Language Models/test_df_500000")
-        self.model = ClassificationModel(model_type, model_name, use_cuda=False, args=model_args)
+        self.model = ClassificationModel(model_type, model_name, use_cuda=False, args = model_args)
 
     def train(self):
         self.model.train_model(self.train_df)
@@ -35,12 +35,13 @@ class TrainAndEval:
 
 
 if __name__ == '__main__':
-    # xlnet-large-cased
-    xlnet = TrainAndEval("xlnet", "xlnet-large-cased", xl_args)
-    xlnet.train()
-    xlnet.eval()
 
-    # microsoft/deberta-large
-    deberta = TrainAndEval("deberta", "microsoft/deberta-large", db_args)
-    deberta.train()
-    deberta.eval()
+    """xlnet-large-cased"""
+    # xlnet = TrainAndEval("xlnet", "xlnet-large-cased")
+    # #xlnet.train()
+    # xlnet.eval()
+
+    """microsoft/deberta-large"""
+    # deberta = TrainAndEval("deberta", "microsoft/deberta-large")
+    # #deberta.train()
+    # deberta.eval()
