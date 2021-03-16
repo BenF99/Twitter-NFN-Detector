@@ -12,8 +12,7 @@ class Main(MainTemplate):
     self.fake_ = None
     self.real_ = None
     self.finurl_ = None
-    self.currtext = None
-    self.submit.visible = False
+    self.submit.enabled = False
     self.wait_msg = "Retrieving information from server, Please wait..."
     
   def error_handler(self, err):
@@ -50,7 +49,6 @@ class Main(MainTemplate):
       self.loadtweet.enabled = True
       self.custom_input.enabled = True
       self.hashtag.enabled = True
-      self.currtext = self.tweet_area.text
       self.tweet_area.text = self.text
       self.fake.text = self.fake_
       self.real.text = self.real_
@@ -63,7 +61,7 @@ class Main(MainTemplate):
       self.tweet_area.enabled = True
       self.hashtag.enabled = False
       self.tweet_area.text = ""
-      self.submit.visible = True
+      self.submit.enabled = True
       self.final_url.visible = False
       self.loadtweet.enabled = False
       self.fake.text = ""
@@ -74,7 +72,7 @@ class Main(MainTemplate):
       self.fake.text = ""
       self.real.text = ""
       self.tweet_area.enabled = False
-      self.submit.visible = False
+      self.submit.enabled = False
       self.loadtweet.enabled = True
     pass
 
@@ -82,16 +80,40 @@ class Main(MainTemplate):
     if self.tweet_area.text == "":
       alert("Please input text")
     else:
-      #if self.tweet_area.text != self.currtext:
         self.custom_input.enabled = False
         self.submit.enabled = False
         self.tweet_area.enabled = False
         with Notification(self.wait_msg):
-          self.fake_, self.real_ = anvil.server.call('response', self.tweet_area.text, self.lm_dropdown.selected_value, False)
+          self.fake_, self.real_ = anvil.server.call('response', self.tweet_area.text,
+                                                     self.lm_dropdown.selected_value, False)
           self.fake.text = self.fake_
           self.real.text = self.real_
-          self.currtext = self.tweet_area.text
         self.custom_input.enabled = True
         self.submit.enabled = True
         self.tweet_area.enabled = True
+    pass
+
+  def info_button_click(self, **event_args):
+    alert("""INFO:
+     1) Specify the input!
+     
+      - Load a random tweet
+      - Input your own text
+      
+      2) Select a fine-tuned language model!
+      
+      - RoBERTa (OpenAI) : ~95% Accuracy
+      - DeBERTa : 96% Accuracy
+      - XLNet : 87% Accuracy
+    
+      3) Evaluate the text!
+      
+      - A greater HUMAN/REAL probability 
+        indicates that your input was likely 
+        HUMAN-written
+        
+      - A greater MACHINE/FAKE probability
+        indicates that your input was likely
+        MACHINE-written""")
+      
     pass
