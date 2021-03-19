@@ -42,3 +42,18 @@ class StoreData:
             'model': self.model,
             'datetime': str(datetime.today().strftime('%d-%m-%Y %H:%M'))
         })
+
+    # def count(self):
+    #     fake_dict = self.ref.child('fake').get()
+    #     real_dict = self.ref.child('real').get()
+    #     print(len(fake_dict.keys()))
+    #     print(len(real_dict.keys()))
+    #
+    # def avgtoken(self):
+    #
+    #     fake_dict = self.ref.child('fake').get()
+    #     len_tc = len(fake_dict.keys())
+    #     t = 0
+    #     for v in fake_dict.values():
+    #         t += v['token_count']
+    #     print(t/len_tc)

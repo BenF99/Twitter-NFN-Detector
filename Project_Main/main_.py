@@ -7,6 +7,9 @@
 # =============================================================================
 # Imports
 import configparser
+import random
+import time
+
 import firebase_admin
 from firebase_admin import credentials
 from roberta import RoBERTaClassification
@@ -77,5 +80,10 @@ def response(text, model, is_hashtag=True):
     else:
         return fake, real
 
-
 anvil.server.wait_forever()
+
+# "Further investigation"
+# models = ["roberta", "deberta", "xlnet"]
+# for i in range(0,500):
+#     time.sleep(8)
+#     response(None, random.choice(models))
