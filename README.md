@@ -95,8 +95,9 @@ python -m main_
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Load Tweet: Pressing 'Load Tweet' requests and classifies the latest available Tweet containing "#news", unless specified otherwise
-Custom Input: Selecting the 'Custom Input' checkbox provides the option to provide a Twitter URL or any arbitrary input
+**Load Tweet**: Pressing 'Load Tweet' requests and classifies the latest available Tweet containing "#news", unless specified otherwise
+
+**Custom Input**: Selecting the 'Custom Input' checkbox provides the option to provide a Twitter URL or any arbitrary input
 
 <!-- CONTACT -->
 ## Contact
