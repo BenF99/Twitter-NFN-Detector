@@ -56,7 +56,7 @@ Neural Fake News (NFN), defined as fictious information masquerading as legitima
 
 [OpenAI RoBERTa Detector](https://github.com/openai/gpt-2-output-dataset/tree/master/detector): 
    ```sh
-   https://github.com/openai/gpt-2-output-dataset/tree/master/detector
+   wget https://openaipublic.azureedge.net/gpt-2/detector-models/v1/detector-base.pt
    ```
 Fine-tuned `DeBERTa-large`:
    ```sh
