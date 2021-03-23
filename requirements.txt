@@ -1,0 +1,13 @@
+anvil_uplink==0.3.34
+pandas==1.1.5
+tqdm==4.50.2
+transformers==4.3.3
+firebase_admin==4.5.1
+pytest==6.2.2
+simpletransformers==0.60.9
+trafilatura==0.7.0
+requests==2.24.0
+torch==1.6.0+cpu
+scipy==1.5.4
+anvil==0.0.2
+python_twitter==3.5
