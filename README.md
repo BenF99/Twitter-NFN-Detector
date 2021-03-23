@@ -69,7 +69,7 @@ MCC: `0.913` | Accuracy: `0.956`
 Model: https://huggingface.co/microsoft/deberta-large
 
 Fine-tuned `XLNet-large-cased` - (`1e-5`, `batch: 16`, `epochs: 2`, `warmup: 100`):
-   ```sh
+   ```
    https://drive.google.com/drive/folders/1vtJ7Q2GqtOpNM7iIO5nX06we3BQJxUNr?usp=sharing
    ```
 MCC: `0.771` | Accuracy: `0.878`
