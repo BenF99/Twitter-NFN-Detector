@@ -76,13 +76,13 @@ Fine-tuned `XLNet-large-cased`:
 
 1) Generate [FireBase SDK Private Key](https://console.firebase.google.com/u/0/project/PROJECT_NAME/settings/serviceaccounts/adminsdk) 
 and place credentials file within `Project_Main`
-2) Clone the anvil app:
+2) Initialize realtime database with `fake` and `real` nodes [(example)](https://i.gyazo.com/5fc0f5819e8f25282ab79661d4088dd5.png)
+3) Clone the anvil app:
 
    ```sh
    https://anvil.works/build#clone:YG6YJDUEBCRAHCKA=DCGTCIMEHE3MZHCRF3G35O4H
    ```
-3) Set Anvil UPLINK key in `main_.py` and Twitter API keys in `TweetGetter.py`
-4) Initialize realtime database with `fake` and `real` nodes [(example)](https://i.gyazo.com/5fc0f5819e8f25282ab79661d4088dd5.png)
+4) Set Anvil UPLINK key in `main_.py` and Twitter API keys in `TweetGetter.py`
 5) Run the server file:
 ```
 # (on the top-level directory of this repository)
