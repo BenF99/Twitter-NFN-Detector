@@ -69,7 +69,7 @@ Fine-tuned `XLNet-large-cased`:
 2) Registration:
 
 * Register for a [Twitter Developer Account](https://developer.twitter.com/en/apply-for-access)
-* Register for an [anvil.Works](https://anvil.works/) account
+* Register for an [anvil.works](https://anvil.works/) account
 * Register and create new [Firebase](https://firebase.google.com/) project
 
 ### Installation
