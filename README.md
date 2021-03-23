@@ -1,6 +1,6 @@
 # Twitter-NFN-Detector
 
-**A Final Year Project at university that provides a system to detecting neural fake news/machine-generated Text on Twitter.**
+**A project created during my final year at university that provides a system to detect neural fake news/machine-generated Text on Twitter.**
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -45,6 +45,7 @@ Neural Fake News (NFN), defined as fictious information masquerading as legitima
 * [Python-Twitter-Tools](https://github.com/python-twitter-tools/twitter)
 * [Firebase](https://firebase.google.com/)
 * [OpenAI Detector](https://github.com/openai/gpt-2-output-dataset/tree/master/detector)
+* [Trafilatura](https://github.com/adbar/trafilatura)
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -66,18 +67,41 @@ Fine-tuned `XLNet-large-cased`:
    ```sh
    -
    ```
+2) Registration:
+
+* Register for a [Twitter Developer Account](https://developer.twitter.com/en/apply-for-access)
+* Register for an [anvil.Works](https://anvil.works/) account
+* Register and create new [Firebase](https://firebase.google.com/) project
+
 ### Installation
 
+1) Generate [FireBase SDK Private Key](https://console.firebase.google.com/u/0/project/PROJECT_NAME/settings/serviceaccounts/adminsdk) 
+and place credentials file within `Project_Main`
+2) Clone the anvil app:
 
+   ```sh
+   https://anvil.works/build#clone:YG6YJDUEBCRAHCKA=DCGTCIMEHE3MZHCRF3G35O4H
+   ```
+3) Set Anvil UPLINK key in `main_.py` and Twitter API keys in `TweetGetter.py`
+4) Initialize realtime database with `fake` and `real` nodes [(example)](https://i.gyazo.com/5fc0f5819e8f25282ab79661d4088dd5.png)
+5) Run the server file:
+```
+# (on the top-level directory of this repository)
+pip install -r requirements.txt
+python -m main_
+```
+6) Visit the anvil application link!
+7) 
 <!-- USAGE EXAMPLES -->
 ## Usage
+
+Load Tweet: Pressing 'Load Tweet' requests and classifies the latest available Tweet containing "#news", unless specified otherwise
+Custom Input: Selecting the 'Custom Input' checkbox provides the option to provide a Twitter URL or any arbitrary input
 
 <!-- CONTACT -->
 ## Contact
 
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
+**1811288@brunel.ac.uk**
 
 <!-- MARKDOWN LINKS AND IMAGES -->
 [detector-screenshot]: "https://i.gyazo.com/ec12d55f1cf276a85c3286ca521e92fc.png"
