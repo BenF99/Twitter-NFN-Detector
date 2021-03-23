@@ -66,7 +66,7 @@ Fine-tuned `XLNet-large-cased` - (`5e-6`, `batch: 16`, `epochs: 4`):
    ```sh
    -
    ```
-_(XLNet and DeBERTa were fine-tuned on the outputs from the 1.5B GPT-2 model (xl-1542M) versus WebText, the dataset used to train the GPT-2 model)_
+_(XLNet and DeBERTa were fine-tuned on the outputs from the 1.5B GPT-2 model (xl-1542M) versus WebText, the [dataset](https://github.com/openai/gpt-2-output-dataset) used to train the GPT-2 model)_
 
 2) Registration:
 
