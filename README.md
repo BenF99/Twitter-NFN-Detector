@@ -52,23 +52,29 @@ Neural Fake News (NFN), defined as fictious information masquerading as legitima
 
 ### Prerequisites
 
-1) Install fine-tuned models:
+1) Install models and fine-tuned weights:
 
 [OpenAI RoBERTa Detector](https://github.com/openai/gpt-2-output-dataset/tree/master/detector): 
    ```sh
    wget https://openaipublic.azureedge.net/gpt-2/detector-models/v1/detector-base.pt
    ```
+Model: https://huggingface.co/roberta-large
+
 Fine-tuned `DeBERTa-large` - (`5e-6`, `batch: 16`, `epochs: 4`, `warmup: 50`, `decay: 0.01`)
    ```sh
    -
    ```
 MCC: `0.913` | Accuracy: `0.956`
 
+Model: https://huggingface.co/microsoft/deberta-large
+
 Fine-tuned `XLNet-large-cased` - (`1e-5`, `batch: 16`, `epochs: 2`, `warmup: 100`):
    ```sh
    -
    ```
 MCC: `0.771` | Accuracy: `0.878`
+
+Model: https://huggingface.co/xlnet-large-cased
 
 
 _(XLNet and DeBERTa were fine-tuned on the outputs from the 1.5B GPT-2 model (xl-1542M) versus WebText, the [dataset](https://github.com/openai/gpt-2-output-dataset) used to train the GPT-2 model)_
@@ -81,7 +87,8 @@ _(XLNet and DeBERTa were fine-tuned on the outputs from the 1.5B GPT-2 model (xl
 
 ### Installation
 
-1) Generate [FireBase SDK Private Key](https://console.firebase.google.com/u/0/project/PROJECT_NAME/settings/serviceaccounts/adminsdk) 
+1) Download models + fine-tuned weights and store in an accessible location 
+2) Generate [FireBase SDK Private Key](https://console.firebase.google.com/u/0/project/PROJECT_NAME/settings/serviceaccounts/adminsdk) 
 and place credentials file within `Project_Main`
 2) Initialize realtime database with `fake` and `real` nodes [(example)](https://i.gyazo.com/5fc0f5819e8f25282ab79661d4088dd5.png)
 3) Clone the anvil app:
