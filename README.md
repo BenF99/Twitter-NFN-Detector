@@ -79,7 +79,7 @@ Model: https://huggingface.co/xlnet-large-cased
 
 **_(XLNet and DeBERTa were fine-tuned on the outputs from the 1.5B GPT-2 model (xl-1542M) versus WebText, the [dataset](https://github.com/openai/gpt-2-output-dataset) used to train the GPT-2 model)_**
 
-2) Registration:
+2) **Registration**:
 
 * Register for a [Twitter Developer Account](https://developer.twitter.com/en/apply-for-access)
 * Register for an [anvil.works](https://anvil.works/) account
