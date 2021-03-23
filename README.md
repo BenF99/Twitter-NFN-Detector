@@ -1,6 +1,6 @@
 # Twitter-NFN-Detector
 
-Detecting Neural Fake News and Synthetic Text on Twitter
+**A Final Year Project at university that provides a system to detecting neural fake news/machine-generated Text on Twitter.**
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
