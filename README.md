@@ -91,7 +91,7 @@ pip install -r requirements.txt
 python -m main_
 ```
 6) Visit the anvil application link!
-7) 
+
 <!-- USAGE EXAMPLES -->
 ## Usage
 
