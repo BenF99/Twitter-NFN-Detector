@@ -59,7 +59,7 @@ Neural Fake News (NFN), defined as fictious information masquerading as legitima
    wget https://openaipublic.azureedge.net/gpt-2/detector-models/v1/detector-base.pt
    ```
 Model: https://huggingface.co/roberta-large
-
+#
 Fine-tuned `DeBERTa-large` - (`5e-6`, `batch: 16`, `epochs: 4`, `warmup: 50`, `decay: 0.01`)
    ```sh
    -
@@ -67,7 +67,7 @@ Fine-tuned `DeBERTa-large` - (`5e-6`, `batch: 16`, `epochs: 4`, `warmup: 50`, `d
 MCC: `0.913` | Accuracy: `0.956`
 
 Model: https://huggingface.co/microsoft/deberta-large
-
+#
 Fine-tuned `XLNet-large-cased` - (`1e-5`, `batch: 16`, `epochs: 2`, `warmup: 100`):
    ```
    https://drive.google.com/drive/folders/1vtJ7Q2GqtOpNM7iIO5nX06we3BQJxUNr?usp=sharing
@@ -75,16 +75,15 @@ Fine-tuned `XLNet-large-cased` - (`1e-5`, `batch: 16`, `epochs: 2`, `warmup: 100
 MCC: `0.771` | Accuracy: `0.878`
 
 Model: https://huggingface.co/xlnet-large-cased
-
-
+#
 **_(XLNet and DeBERTa were fine-tuned on the outputs from the 1.5B GPT-2 model (xl-1542M) versus WebText, the [dataset](https://github.com/openai/gpt-2-output-dataset) used to train the GPT-2 model)_**
-
+#
 2) **Registration**:
 
 * Register for a [Twitter Developer Account](https://developer.twitter.com/en/apply-for-access)
 * Register for an [anvil.works](https://anvil.works/) account
 * Register and create new [Firebase](https://firebase.google.com/) project
-
+#
 ### Installation
 
 1) Download models + fine-tuned weights and store in an accessible location 
