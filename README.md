@@ -62,7 +62,7 @@ Model: https://huggingface.co/roberta-large
 #
 Fine-tuned `DeBERTa-large` - (`5e-6`, `batch: 16`, `epochs: 4`, `warmup: 50`, `decay: 0.01`)
    ```sh
-   -
+   https://drive.google.com/drive/folders/1P-EewnfcXvQR5UVzgavB9I_py1YFwQc7?usp=sharing
    ```
 MCC: `0.913` | Accuracy: `0.956`
 
