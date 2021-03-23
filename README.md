@@ -55,7 +55,7 @@ Neural Fake News (NFN), defined as fictious information masquerading as legitima
 1) Install models and fine-tuned weights:
 
 [OpenAI RoBERTa Detector](https://github.com/openai/gpt-2-output-dataset/tree/master/detector): 
-   ```sh
+   ```
    wget https://openaipublic.azureedge.net/gpt-2/detector-models/v1/detector-base.pt
    ```
 Model: https://huggingface.co/roberta-large
