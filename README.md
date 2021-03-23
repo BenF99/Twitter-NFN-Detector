@@ -58,14 +58,16 @@ Neural Fake News (NFN), defined as fictious information masquerading as legitima
    ```sh
    wget https://openaipublic.azureedge.net/gpt-2/detector-models/v1/detector-base.pt
    ```
-Fine-tuned `DeBERTa-large`:
+Fine-tuned `DeBERTa-large` - (`1e-5`, `batch: 16`, `epochs;: 2`)
    ```sh
    -
    ```
-Fine-tuned `XLNet-large-cased`:
+Fine-tuned `XLNet-large-cased` - (`5e-6`, `batch: 16`, `epochs: 4`):
    ```sh
    -
    ```
+_(XLNet and DeBERTa were fine-tuned on the outputs from the 1.5B GPT-2 model (xl-1542M) versus WebText, the dataset used to train the GPT-2 model)_
+
 2) Registration:
 
 * Register for a [Twitter Developer Account](https://developer.twitter.com/en/apply-for-access)
