@@ -94,7 +94,7 @@ and place credentials file within `Project_Main`
 3) Clone the anvil app:
 
    ```sh
-   https://anvil.works/build#clone:YG6YJDUEBCRAHCKA=DCGTCIMEHE3MZHCRF3G35O4H
+   https://anvil.works/build#clone:YG6YJDUEBCRAHCKA=Y4ALXWHEKMF34YBT4GEPCXJM
    ```
 4) Set Anvil UPLINK key in `main_.py` and Twitter API keys in `TweetGetter.py`
 5) Run the server file:
