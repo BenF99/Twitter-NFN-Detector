@@ -20,7 +20,6 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
 
@@ -111,11 +110,6 @@ python -m main_
 **Load Tweet**: Pressing 'Load Tweet' requests and classifies (fake/real probablities) the latest available Tweet containing "#news", unless specified otherwise
 
 **Custom Input**: Selecting the 'Custom Input' checkbox provides the option to provide a Twitter URL or any arbitrary input to be classified (fake/real probablities)
-
-<!-- CONTACT -->
-## Contact
-
-**1811288@brunel.ac.uk**
 
 <!-- MARKDOWN LINKS AND IMAGES -->
 [detector-screenshot]: "https://i.gyazo.com/ec12d55f1cf276a85c3286ca521e92fc.png"
